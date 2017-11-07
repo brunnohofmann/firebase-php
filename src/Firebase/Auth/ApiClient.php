@@ -129,4 +129,20 @@ class ApiClient
             throw AuthException::fromRequestException($e);
         }
     }
+
+	/**
+	 * Send a password reset email by issuing an HTTP POST request to the Auth getOobConfirmationCode endpoint.
+	 *
+	 * @param string $email
+	 *
+	 * @see https://firebase.google.com/docs/reference/rest/auth/#section-send-password-reset-email
+	 *
+	 */
+	public function sendPasswordResetEmail(string $email = null): ResponseInterface
+	{
+		return $this->request('getOobConfirmationCode', array_filter([
+			'email' => $email,
+			'requestType' => "PASSWORD_RESET",
+		]));
+	}
 }

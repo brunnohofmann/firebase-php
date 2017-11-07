@@ -107,4 +107,9 @@ class Auth
 
         return User::create($data['idToken'], $data['refreshToken']);
     }
+
+	public function sendPasswordResetEmail(string $email): void
+	{
+		$response = $this->client->sendPasswordResetEmail($email);
+	}
 }
